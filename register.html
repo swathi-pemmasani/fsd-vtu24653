@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Register</h2>
+
+    <form id="registerForm">
+    
+    <label>Name</label><br>
+    <input type="text" name="name" placeholder="Enter Name" required>
+
+    <label>Email</label><br>
+    <input type="email" name="email" placeholder="Enter Email" required>
+
+    <label>Password</label><br>
+    <input type="password" name="password" placeholder="Enter Password" required>
+
+    <button type="submit">Register</button>
+</form>
+</div>
+<script src=""script.js"></script>
+<script>
+document.getElementById("registerForm").onsubmit = async (e) => {
+    e.preventDefault();
+
+    let formData = new FormData(e.target);
+
+    let res = await fetch("api/register.php", {
+        method: "POST",
+        body: formData
+    });
+
+    let result = await res.text();
+    alert(result);
+};
+</script>
+
+</body>
+</html>
