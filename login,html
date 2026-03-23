@@ -1,0 +1,24 @@
+<form id="loginForm">
+  <input type="email" name="email" required>
+  <input type="password" name="password" required>
+  <button type="submit">Login</button>
+</form>
+<script src="script.js"></script>
+<script>
+document.getElementById("loginForm").onsubmit = async (e) => {
+  e.preventDefault();
+  let formData = new FormData(e.target);
+
+  let res = await fetch("api/login.php", {
+    method: "POST",
+    body: formData
+  });
+
+  let result = await res.text();
+  alert(result);
+
+  if(result.includes("Success")){
+    window.location = "dashboard.php";
+  }
+};
+</script>
